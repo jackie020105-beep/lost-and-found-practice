@@ -1,0 +1,24 @@
+# Python / virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local configuration, databases and tool caches
+.env
+.env.*
+!.env.example
+instance/*
+!instance/.gitkeep
+.uv-cache/
+*.log
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

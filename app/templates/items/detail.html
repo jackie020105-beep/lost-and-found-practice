@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}{{ item.title }} · 교내 분실물 센터{% endblock %}
+{% block content %}
+<div class="narrow">
+  <a class="back-link" href="{{ url_for('items.index') }}">← 목록으로</a>
+  <article class="detail-panel">
+    <span class="badge">{{ item.category }}</span>
+    <h1>{{ item.title }}</h1>
+    <dl>
+      <div><dt>습득일</dt><dd>{{ item.found_date }}</dd></div>
+      <div><dt>습득 장소</dt><dd>{{ item.found_location }}</dd></div>
+      <div><dt>보관 장소</dt><dd>{{ item.storage_location }}</dd></div>
+    </dl>
+    <h2>물품 설명</h2>
+    <p class="description">{{ item.description or '추가 설명이 없습니다.' }}</p>
+    <aside class="notice">본인 물건이라면 보관 장소의 담당자에게 문의해 주세요.</aside>
+  </article>
+</div>
+{% endblock %}

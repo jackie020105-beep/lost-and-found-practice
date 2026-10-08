@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="intro">
+  <p class="eyebrow">CAMPUS LOST &amp; FOUND</p>
+  <h1>잃어버린 물건을<br>함께 찾아요.</h1>
+  <p class="muted">학교에서 발견한 물건을 확인하고, 보관 장소를 찾아보세요.</p>
+</section>
+<form method="get" class="search-panel" action="{{ url_for('items.index') }}">
+  <div class="search-field">
+    <label for="q">물품 검색</label>
+    <input type="search" id="q" name="q" value="{{ query }}" maxlength="100" placeholder="물품명, 설명 또는 습득 장소">
+  </div>
+  <div>
+    <label for="category">분류</label>
+    <select id="category" name="category">
+      <option value="">전체 분류</option>
+      {% for option in categories %}
+        <option value="{{ option }}" {% if category == option %}selected{% endif %}>{{ option }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit">검색</button>
+  {% if query or category %}<a href="{{ url_for('items.index') }}">초기화</a>{% endif %}
+</form>
+<section aria-labelledby="items-heading">
+  <div class="section-heading">
+    <h2 id="items-heading">{% if query or category %}검색 결과{% else %}등록된 분실물{% endif %} <span class="count">{{ total }}</span></h2>
+    <span class="muted">최근 등록순</span>
+  </div>
+  <div class="item-grid">
+    {% for item in items %}
+    <article class="card">
+      <span class="badge">{{ item.category }}</span>
+      <h3><a href="{{ url_for('items.detail', item_id=item.id) }}">{{ item.title }}</a></h3>
+      <dl>
+        <div><dt>습득일</dt><dd>{{ item.found_date }}</dd></div>
+        <div><dt>습득 장소</dt><dd>{{ item.found_location }}</dd></div>
+        <div><dt>보관 장소</dt><dd>{{ item.storage_location }}</dd></div>
+      </dl>
+    </article>
+    {% else %}
+    <div class="empty-state">
+      <h3>{% if query or category %}검색 결과가 없습니다.{% else %}아직 등록된 분실물이 없습니다.{% endif %}</h3>
+      <p class="muted">{% if query or category %}다른 검색어나 분류로 찾아보세요.{% else %}주인을 기다리는 물건을 발견했다면 등록해 주세요.{% endif %}</p>
+      <a href="{{ url_for('items.create') }}">습득물 등록하기 →</a>
+    </div>
+    {% endfor %}
+  </div>
+  {% if pages > 1 %}
+  <nav class="pagination" aria-label="분실물 목록 페이지">
+    {% if page > 1 %}<a href="{{ url_for('items.index', page=page-1, q=query, category=category) }}">← 이전</a>{% endif %}
+    <span>{{ page }} / {{ pages }} 페이지</span>
+    {% if page < pages %}<a href="{{ url_for('items.index', page=page+1, q=query, category=category) }}">다음 →</a>{% endif %}
+  </nav>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}교내 분실물 센터{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <header class="site-header">
+    <nav class="container nav" aria-label="주 메뉴">
+      <a class="brand" href="{{ url_for('items.index') }}">교내 분실물 센터</a>
+      <a class="button" href="{{ url_for('items.create') }}">습득물 등록</a>
+    </nav>
+  </header>
+  <main class="container" id="main">
+    {% for message in get_flashed_messages() %}
+      <p class="notice" role="status">{{ message }}</p>
+    {% endfor %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="container site-footer">잃어버린 물건이 다시 주인에게 돌아갈 수 있도록.</footer>
+</body>
+</html>

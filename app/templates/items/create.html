@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}습득물 등록 · 교내 분실물 센터{% endblock %}
+{% block content %}
+<div class="narrow">
+  <a class="back-link" href="{{ url_for('items.index') }}">← 목록으로</a>
+  <h1>습득물 등록</h1>
+  <p class="muted">발견한 물건과 보관 장소를 알려주세요. 물품 설명을 제외한 모든 항목은 필수입니다.</p>
+  <form method="post" class="form-panel">
+    {{ form.hidden_tag() }}
+    {% for field in [form.title, form.category, form.found_location, form.storage_location, form.found_date, form.description] %}
+    <div class="form-field">
+      {{ field.label }}
+      {% set attrs = {'aria-describedby': field.id ~ '-errors', 'aria-invalid': 'true' if field.errors else 'false'} %}
+      {% if field.name == 'description' %}
+        {{ field(rows=5, maxlength=2000, placeholder='색상, 모양 등 물품의 특징을 적어주세요.', **attrs) }}
+      {% elif field.name == 'found_date' %}
+        {{ field(max=today, **attrs) }}
+      {% elif field.name == 'category' %}
+        {{ field(**attrs) }}
+      {% else %}
+        {{ field(maxlength=100, **attrs) }}
+      {% endif %}
+      <div id="{{ field.id }}-errors" class="field-errors" {% if field.errors %}role="alert"{% endif %}>
+        {% for error in field.errors %}<p>{{ error }}</p>{% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+    <p class="muted small">이름, 학번, 전화번호 같은 개인정보는 입력하지 마세요.</p>
+    <div class="form-actions">{{ form.submit(class='button') }} <a href="{{ url_for('items.index') }}">취소</a></div>
+  </form>
+</div>
+{% endblock %}
