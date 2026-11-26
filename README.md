@@ -67,6 +67,9 @@ lost-and-found-practice/
 ## 개발 및 테스트
 ### TDD
 ### 단위 테스트
+- pytest
+- code metric
+- lizard
 ```powershell
 # 자동 새로고침을 사용하는 로컬 개발 서버
 .\.venv\Scripts\python.exe -m flask --app app run --debug
