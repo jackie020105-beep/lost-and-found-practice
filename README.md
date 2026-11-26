@@ -53,7 +53,7 @@ lost-and-found-practice/
 ```
 ## 소프트웨어 설계
 ### 화면설계
-### 아키텍쳐 설계
+### 소프트웨어 아키텍쳐 설계
 ### 상세 설계
 
 ## 구현된 기능
@@ -65,7 +65,8 @@ lost-and-found-practice/
 - 한국어 화면, 모바일 대응, 빈 목록과 오류 안내
 
 ## 개발 및 테스트
-
+### TDD
+### 단위 테스트
 ```powershell
 # 자동 새로고침을 사용하는 로컬 개발 서버
 .\.venv\Scripts\python.exe -m flask --app app run --debug
