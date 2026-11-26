@@ -1,4 +1,4 @@
-# 교내 분실물 관리 서비스
+<img width="1757" height="749" alt="image" src="https://github.com/user-attachments/assets/ce9940ba-cc2a-4ec8-9751-1f7c6fe99bde" /># 교내 분실물 관리 서비스
 
 Python + Flask + SQLite로 만든 로컬 개발용 웹 서비스입니다.
 학교에서 습득한 물건을 등록하고 목록·검색·상세 화면에서 확인할 수 있습니다.
@@ -51,6 +51,10 @@ lost-and-found-practice/
 ├── run.py                  # 개발 서버 실행
 └── README.md
 ```
+## 소프트웨어 설계
+### 화면설계
+### 아키텍쳐 설계
+### 상세 설계
 
 ## 구현된 기능
 
