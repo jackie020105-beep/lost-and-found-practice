@@ -53,7 +53,7 @@ lost-and-found-practice/
 ```
 ## 소프트웨어 설계
 ### 화면설계
-### 아키텍쳐 설계
+### 소프트웨어 아키텍쳐 설계
 ### 상세 설계
 
 ## 구현된 기능
@@ -64,8 +64,11 @@ lost-and-found-practice/
 - 필수 항목, 글자 수, 날짜 검증 및 등록 폼 CSRF 보호
 - 한국어 화면, 모바일 대응, 빈 목록과 오류 안내
 
-## 개발 및 테스트
-
+## 개발 및  TDD
+### 단위 테스트
+- pytest
+- code metric
+- lizard
 ```powershell
 # 자동 새로고침을 사용하는 로컬 개발 서버
 .\.venv\Scripts\python.exe -m flask --app app run --debug
@@ -84,3 +87,6 @@ lost-and-found-practice/
 반환 처리, 사진 업로드는 후속 개발 항목입니다.
 개발 서버는 로컬 주소로 실행됩니다. 공개 서비스로 전환할 때 필요한 작업과 설정은
 [개발 안내](docs/development.md)에 정리했습니다.
+
+## 개발
+### 코딩 규칙
